@@ -3,7 +3,6 @@ import litellm
 import os
 
 API_BASE = os.environ.get('API_BASE')
-AZURE = os.environ.get('AZURE', True)
 API_VERSION = os.environ.get('API_VERSION')
 MODEL = os.environ.get('MODEL')
 
@@ -55,7 +54,7 @@ class AICaller:
         if "ollama" in self.model or "huggingface" in self.model or self.model.startswith("openai/"):
             completion_params["api_base"] = self.api_base
         completion_params["api_base"] = API_BASE
-        completion_params["azure"] = AZURE
+        completion_params["azure"] = True
         completion_params["api_version"] = API_VERSION
         completion_params["model"] = MODEL
         response = litellm.completion(**completion_params)
